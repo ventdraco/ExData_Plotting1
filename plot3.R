@@ -13,7 +13,7 @@ if (!file.exists("Exploratory Analisys")) {
 list.files("./", recursive=TRUE)
 
 ##Reading data
-hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
+hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE, na.strings = '?')
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
 ##Converting Time variables to Time
@@ -29,5 +29,5 @@ with(xhpc,{
                 legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub metering 1","Sub metering 2","Sub metering 3"))
 })
 ##saving the plot in a png extension 
-dev.copy(png,'plot3.png')
+dev.copy(png,file = 'plot3.png',width = 480, height = 480)
 dev.off()

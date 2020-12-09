@@ -13,8 +13,7 @@ if (!file.exists("Exploratory Analisys")) {
 list.files("./", recursive=TRUE)
 
 ##Reading data
-## correct this partdata = read.csv("household_power_consumption.txt", header = TRUE, sep = ";", na.strings = '?')
-hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
+hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE, na.strings = '?')
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
 ##Converting Time variables to Time
@@ -33,5 +32,5 @@ with(xhpc,{
         plot(Time,as.numeric(as.character(Global_reactive_power)),type="l",xlab="datetime",ylab="Global reactive power")
 })
 ##saving the plot in a png extension
-dev.copy(png,'plot4.png')
+dev.copy(png,file = 'plot4.png',width = 480, height = 480)
 dev.off()
