@@ -16,18 +16,20 @@ list.files("./", recursive=TRUE)
 hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
+##Converting Time variables to Time
 xhpc$Time <- strptime(xhpc$Time, format="%H:%M:%S")
 xhpc[1:1440,"Time"] <- format(xhpc[1:1440,"Time"],"2007-02-01 %H:%M:%S")
 xhpc[1441:2880,"Time"] <- format(xhpc[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
 
 ##creating plots
 par(mfrow=c(2,2))
-plot(xhpc$Time,as.numeric(as.character(xhpc$Global_active_power)),type="l",  xlab="",ylab="Global Active Power")  
-plot(xhpc$Time,as.numeric(as.character(xhpc$Voltage)), type="l",xlab="datetime",ylab="Voltage")
-plot(xhpc$Time,xhpc$Sub_metering_1,type="n",xlab="",ylab="Energy sub metering")
-with(xhpc,lines(Time,as.numeric(as.character(Sub_metering_1))))
-with(xhpc,lines(Time,as.numeric(as.character(Sub_metering_2)),col="red"))
-with(xhpc,lines(Time,as.numeric(as.character(Sub_metering_3)),col="blue"))
-legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), cex = 0.6)
-plot(xhpc$Time,as.numeric(as.character(xhpc$Global_reactive_power)),type="l",xlab="datetime",ylab="Global reactive power")
-
+with(xhpc,{
+        plot(Time,as.numeric(as.character(Global_active_power)),type="l",  xlab="",ylab="Global Active Power")  
+        plot(Time,as.numeric(as.character(Voltage)), type="l",xlab="datetime",ylab="Voltage")
+        plot(Time,Sub_metering_1,type="n",xlab="",ylab="Energy sub metering")
+                lines(Time,as.numeric(as.character(Sub_metering_1)))
+                lines(Time,as.numeric(as.character(Sub_metering_2)),col="red")
+                lines(Time,as.numeric(as.character(Sub_metering_3)),col="blue")
+                legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), cex = 0.6)
+        plot(Time,as.numeric(as.character(Global_reactive_power)),type="l",xlab="datetime",ylab="Global reactive power")
+})
