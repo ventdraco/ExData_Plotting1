@@ -13,13 +13,12 @@ if (!file.exists("Exploratory Analisys")) {
 list.files("./", recursive=TRUE)
 
 ##Reading data
+## correct this partdata = read.csv("household_power_consumption.txt", header = TRUE, sep = ";", na.strings = '?')
 hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
 ##Converting Time variables to Time
-xhpc$Time <- strptime(xhpc$Time, format="%H:%M:%S")
-xhpc[1:1440,"Time"] <- format(xhpc[1:1440,"Time"],"2007-02-01 %H:%M:%S")
-xhpc[1441:2880,"Time"] <- format(xhpc[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
+xhpc$Time <- strptime(paste(xhpc$Date, xhpc$Time, sep=" "), "%d/%m/%Y %H:%M:%S")
 
 ##creating plots
 par(mfrow=c(2,2))
