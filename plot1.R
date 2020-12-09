@@ -16,8 +16,6 @@ list.files("./", recursive=TRUE)
 hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
-#calling the hist function
+#creating histogram
 hist(as.numeric(as.character(xhpc$Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
-        
-# annotating graph
 title(main="Global Active Power")

@@ -20,8 +20,9 @@ xhpc$Time <- strptime(xhpc$Time, format="%H:%M:%S")
 xhpc[1:1440,"Time"] <- format(xhpc[1:1440,"Time"],"2007-02-01 %H:%M:%S")
 xhpc[1441:2880,"Time"] <- format(xhpc[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
 
-# calling the basic plot function
+# creating plot
 plot(xhpc$Time, as.numeric(as.character(xhpc$Global_active_power)),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
-
-# annotating graph
 title(main="Global Active Power Vs Time")
+
+
+
