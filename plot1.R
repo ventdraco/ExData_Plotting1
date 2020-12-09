@@ -17,5 +17,7 @@ hpc<- read.table("household_power_consumption.txt", sep = ";" ,header = TRUE)
 xhpc <- subset(hpc,Date=="1/2/2007" | Date =="2/2/2007")
 
 #creating histogram
-hist(as.numeric(as.character(xhpc$Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
-title(main="Global Active Power")
+with(xhpc,{
+        hist(as.numeric(as.character(Global_active_power)),col="red",main="Global Active Power",xlab="Global Active Power(kilowatts)")
+                title(main="Global Active Power")
+})
