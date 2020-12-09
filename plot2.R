@@ -22,9 +22,12 @@ xhpc[1:1440,"Time"] <- format(xhpc[1:1440,"Time"],"2007-02-01 %H:%M:%S")
 xhpc[1441:2880,"Time"] <- format(xhpc[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
 
 # creating plot
+par(mfrow=c(1,1))
 with(xhpc,{
         plot(Time, as.numeric(as.character(Global_active_power)),type="l",xlab="",ylab="Global Active Power (kilowatts)") 
                 title(main="Global Active Power Vs Time")
 })
-
+##saving the plot in a png extension
+dev.copy(png,'plot2.png')
+dev.off()
 

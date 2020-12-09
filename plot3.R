@@ -22,6 +22,7 @@ xhpc[1:1440,"Time"] <- format(xhpc[1:1440,"Time"],"2007-02-01 %H:%M:%S")
 xhpc[1441:2880,"Time"] <- format(xhpc[1441:2880,"Time"],"2007-02-02 %H:%M:%S")
 
 ##Creating plot
+par(mfrow=c(1,1))
 with(xhpc,{
         plot(Time,Sub_metering_1,type="n",xlab="",ylab="Energy sub metering")
                 lines(Time,as.numeric(as.character(Sub_metering_1)))
@@ -29,3 +30,6 @@ with(xhpc,{
                 lines(Time,as.numeric(as.character(Sub_metering_3)),col="blue")
                 legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub metering 1","Sub metering 2","Sub metering 3"))
 })
+##saving the plot in a png extension 
+dev.copy(png,'plot3.png')
+dev.off()

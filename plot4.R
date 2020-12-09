@@ -33,3 +33,6 @@ with(xhpc,{
                 legend("topright", lty=1, col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), cex = 0.6)
         plot(Time,as.numeric(as.character(Global_reactive_power)),type="l",xlab="datetime",ylab="Global reactive power")
 })
+##saving the plot in a png extension
+dev.copy(png,'plot4.png')
+dev.off()
